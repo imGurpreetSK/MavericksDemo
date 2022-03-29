@@ -16,7 +16,7 @@ class StrangerViewModelTest {
 
     @Test
     fun `emit new state on text changes`() = runTest {
-        val viewModel = StrangerViewModel(StrangerState(), mock())
+        val viewModel = StrangerViewModel(StrangerState(), StrangerViewRenderer(mock()))
 
         viewModel.stateFlow.test {
             assertThat(awaitItem()).isEqualTo(StrangerState(""))

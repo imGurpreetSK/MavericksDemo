@@ -5,8 +5,8 @@ import com.example.mavericksdemo.base.BaseViewModel
 
 class CounterViewModel(
     initialState: CounterState,
-    view: CounterView
-) : BaseViewModel<CounterState, CounterView>(initialState, view) {
+    renderer: CounterViewRenderer
+) : BaseViewModel<CounterState, CounterViewRenderer>(initialState, renderer) {
 
     fun increment() {
         setState { copy(count = count + 1) }
@@ -19,6 +19,6 @@ class CounterViewModel(
     // TODO(gs): Can this boilerplate be removed somehow?
     companion object : MavericksViewModelFactory<CounterViewModel, CounterState> {
         override fun create(viewModelContext: ViewModelContext, state: CounterState): CounterViewModel =
-            CounterViewModel(state, getView(viewModelContext))
+            CounterViewModel(state, CounterViewRenderer(getView(viewModelContext)))
     }
 }

@@ -6,8 +6,8 @@ import com.example.mavericksdemo.base.BaseViewModel
 
 class StrangerViewModel(
     initialState: StrangerState,
-    view: StrangerView
-) : BaseViewModel<StrangerState, StrangerView>(initialState, view) {
+    view: StrangerViewRenderer
+) : BaseViewModel<StrangerState, StrangerViewRenderer>(initialState, view) {
 
     fun onTextChange(text: String) {
         setState { copy(name = text) }
@@ -15,6 +15,6 @@ class StrangerViewModel(
 
     companion object : MavericksViewModelFactory<StrangerViewModel, StrangerState> {
         override fun create(viewModelContext: ViewModelContext, state: StrangerState): StrangerViewModel =
-            StrangerViewModel(state, getView(viewModelContext))
+            StrangerViewModel(state, StrangerViewRenderer(getView(viewModelContext)))
     }
 }

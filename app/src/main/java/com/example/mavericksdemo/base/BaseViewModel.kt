@@ -1,25 +1,24 @@
 package com.example.mavericksdemo.base
 
-import android.util.Log
 import com.airbnb.mvrx.FragmentViewModelContext
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.ViewModelContext
 
-abstract class BaseViewModel<State : MavericksState, View : BaseView<State>>(
+abstract class BaseViewModel<State : MavericksState, ViewRenderer : BaseViewRenderer<State>>(
     initialState: State,
-    view: View
+    renderer: ViewRenderer
 ) : MavericksViewModel<State>(initialState) {
 
     init {
         onEach {
             println("State: $it")
-            view.render(it)
+            renderer.render(it)
         }
     }
 
     companion object {
-        fun <T> getView(viewModelContext: ViewModelContext): T =
-            (viewModelContext as FragmentViewModelContext).fragment as T
+        fun <V> getView(viewModelContext: ViewModelContext): V where V : BaseView =
+            (viewModelContext as FragmentViewModelContext).fragment as V
     }
 }
