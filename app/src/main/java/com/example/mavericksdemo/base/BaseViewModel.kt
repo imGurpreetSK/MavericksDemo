@@ -13,7 +13,7 @@ abstract class BaseViewModel<State : MavericksState, View : BaseView<State>>(
 
     init {
         onEach {
-            Log.i("State: ", it.toString())
+            println("State: $it")
             view.render(it)
         }
     }
