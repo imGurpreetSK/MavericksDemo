@@ -15,8 +15,10 @@ class CounterViewModel(
         setState { copy(count = count - 1) }
     }
 
-    // TODO(gs): Can this boilerplate be removed somehow?
     companion object : MavericksViewModelFactory<CounterViewModel, CounterState> {
-        override fun create(viewModelContext: ViewModelContext, state: CounterState): CounterViewModel = CounterViewModel(state)
+        override fun create(
+            viewModelContext: ViewModelContext,
+            state: CounterState
+        ): CounterViewModel = CounterViewModel(state)
     }
 }
