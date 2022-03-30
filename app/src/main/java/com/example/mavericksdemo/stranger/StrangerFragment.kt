@@ -5,9 +5,12 @@ import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.airbnb.mvrx.fragmentViewModel
+import com.airbnb.mvrx.withState
 import com.example.mavericksdemo.R
 import com.example.mavericksdemo.databinding.StrangerFragmentBinding
 import com.example.mavericksdemo.utils.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 class StrangerFragment : Fragment(R.layout.stranger_fragment), StrangerView {
 
@@ -16,6 +19,9 @@ class StrangerFragment : Fragment(R.layout.stranger_fragment), StrangerView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.onEach {
+            StrangerViewRenderer(this).render(it)
+        }
 
         binding.input.addTextChangedListener {
             it?.let {

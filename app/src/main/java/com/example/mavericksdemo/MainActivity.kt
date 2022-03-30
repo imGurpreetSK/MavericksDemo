@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mavericksdemo.counter.CounterFragment
 import com.example.mavericksdemo.databinding.MainActivityBinding
 import com.example.mavericksdemo.stranger.StrangerFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -16,7 +16,10 @@ class CounterFragment : Fragment(R.layout.counter_fragment), CounterView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.onEach { Log.i("CounterState", "State: $it") }
+        viewModel.onEach {
+            Log.i("CounterState", "State: $it")
+            CounterViewRenderer(this).render(it)
+        }
 
         binding.incrementButton.setOnClickListener { viewModel.increment() }
         binding.decrementButton.setOnClickListener { viewModel.decrement() }

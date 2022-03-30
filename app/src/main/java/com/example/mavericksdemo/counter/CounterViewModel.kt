@@ -4,9 +4,8 @@ import com.airbnb.mvrx.*
 import com.example.mavericksdemo.base.BaseViewModel
 
 class CounterViewModel(
-    initialState: CounterState,
-    renderer: CounterViewRenderer
-) : BaseViewModel<CounterState, CounterViewRenderer>(initialState, renderer) {
+    initialState: CounterState
+) : BaseViewModel<CounterState>(initialState) {
 
     fun increment() {
         setState { copy(count = count + 1) }
@@ -18,7 +17,6 @@ class CounterViewModel(
 
     // TODO(gs): Can this boilerplate be removed somehow?
     companion object : MavericksViewModelFactory<CounterViewModel, CounterState> {
-        override fun create(viewModelContext: ViewModelContext, state: CounterState): CounterViewModel =
-            CounterViewModel(state, CounterViewRenderer(getView(viewModelContext)))
+        override fun create(viewModelContext: ViewModelContext, state: CounterState): CounterViewModel = CounterViewModel(state)
     }
 }
