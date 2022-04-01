@@ -16,7 +16,7 @@ class CounterViewModelTest {
 
     @Test
     fun `should increment count`() = runTest {
-        val viewModel = CounterViewModel(CounterState(0), CounterViewRenderer(mock()))
+        val viewModel = CounterViewModel(CounterState(0))
 
         viewModel.increment()
 
@@ -27,7 +27,7 @@ class CounterViewModelTest {
 
     @Test
     fun `should decrement count`() = runTest {
-        val viewModel = CounterViewModel(CounterState(10), CounterViewRenderer(mock()))
+        val viewModel = CounterViewModel(CounterState(10))
 
         viewModel.decrement()
 

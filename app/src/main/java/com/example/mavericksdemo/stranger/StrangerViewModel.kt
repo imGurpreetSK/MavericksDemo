@@ -18,25 +18,6 @@ class StrangerViewModel @AssistedInject constructor(
 ) : BaseViewModel<StrangerState>(initialState) {
 
     fun onTextChange(text: String) {
-        viewModelScope.launch {
-            println("ONE: " + repository.getNames())
-        }
-
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                println("TWO: " + repository.getNames())
-            }
-        }
-
-        viewModelScope.launch {
-            val deferred1 = async { println("THREE: 1: " + repository.getNames()) }
-            val deferred2 = async { println("THREE: 2: " + repository.getNames()) }
-            val deferred3 = async { println("THREE: 3: " + repository.getNames()) }
-            deferred1.await()
-            deferred2.await()
-            deferred3.await()
-        }
-
         setState { copy(name = text) }
     }
 
